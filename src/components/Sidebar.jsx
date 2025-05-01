@@ -40,9 +40,7 @@ export const Sidebar = () => {
      <div className="min-h-screen bg-[#f5f7fa] font-sans text-gray-800">
        {/* Mobile Navigation */}
        <div className="md:hidden p-4 shadow-inner bg-[#f5f7fa] flex items-center justify-between">
-         <h1 className="text-lg font-bold text-gray-700">
-           Color Palette Generator
-         </h1>
+         <h1 className="text-lg font-bold text-gray-700">Rainbow Canvas</h1>
          <button
            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
            className="p-2 rounded-full bg-[#e0e5ec] shadow-inner hover:shadow-md transition"
@@ -78,9 +76,13 @@ export const Sidebar = () => {
        <div className="flex flex-col md:flex-row">
          {/* Desktop Sidebar */}
          <div className="hidden md:flex md:w-64 bg-[#f5f7fa] h-screen p-6 shadow-inner flex-col">
-           <h1 className="text-2xl font-bold text-gray-700 mb-6">
-             Color Palette Generator
-           </h1>
+           <div className='flex items-center mb-6'>
+             <img src="/logo.png" alt="Logo" className="h-16" />
+             <h1 className="text-2xl font-bold text-gray-700">
+               Rainbow Canvas
+             </h1>
+           </div>
+
            <nav className="space-y-3">
              {navItems.map((item) => (
                <button

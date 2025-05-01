@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Save } from "lucide-react";
 import ColorSwatch from "./ColorSwatch";
-
+import { toast } from "react-toastify";
 
 function CustomPalette({ savedPalettes, setSavedPalettes }) {
   const [customColors, setCustomColors] = useState([
@@ -49,9 +49,16 @@ function CustomPalette({ savedPalettes, setSavedPalettes }) {
     setSavedPalettes([...savedPalettes, newPalette]);
     setCustomPaletteName("");
 
-    // Show save success notification
-    alert(`Custom palette "${name}" saved successfully!`);
-  };
+    toast.success(`Custom palette "${name}" saved successfully!` , {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: "light",
+    });  };
 
   return (
     <div className="bg-white rounded-lg shadow-lg p-6">

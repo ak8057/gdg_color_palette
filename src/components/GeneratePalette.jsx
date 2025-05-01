@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Trash, RefreshCw, Save } from "lucide-react";
 import ColorSwatch from "./ColorSwatch";
 import { hexToHSL, HSLToHex } from "../utils/colorUtils";
-
+import { toast } from "react-toastify";
 
 
 
@@ -146,7 +146,16 @@ function GeneratePalette({ savedPalettes, setSavedPalettes }) {
     setPaletteName("");
 
     // Show save success notification
-    alert(`Palette "${name}" saved successfully!`);
+    toast.success(`Custom palette "${name}" saved successfully!` , {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: "light",
+    });
   };
 
   return (

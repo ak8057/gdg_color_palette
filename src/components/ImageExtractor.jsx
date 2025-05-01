@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Copy, Trash, Save, Image } from "lucide-react";
 import { hexToHSL, HSLToHex } from "../utils/colorUtils";
 import { calculateTextColor } from "../utils/colorUtils";
-
+import { toast } from "react-toastify";
 
 
 function ImageExtractor({ savedPalettes, setSavedPalettes }) {
@@ -129,7 +129,16 @@ function ImageExtractor({ savedPalettes, setSavedPalettes }) {
 
   const saveExtractedPalette = () => {
     if (selectedColors.length === 0) {
-      alert("Please select at least one color for your palette");
+      
+      toast.error("Please select at least one color for your palette", {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      
       return;
     }
 
@@ -146,8 +155,13 @@ function ImageExtractor({ savedPalettes, setSavedPalettes }) {
     setSavedPalettes([...savedPalettes, newPalette]);
     setExtractedPaletteName("");
 
-    // Show save success notification
-    alert(`Image palette "${name}" saved successfully!`);
+   
+    toast.success(`Image palette "${name}" saved successfully!`, {
+      position: "top-right",
+      autoClose: 2000,
+      theme: "light",
+      
+    });
   };
 
   return (

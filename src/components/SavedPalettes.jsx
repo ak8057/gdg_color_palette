@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Trash } from "lucide-react";
-
+import { toast } from "react-toastify";
 function SavedPalettes({ savedPalettes, setSavedPalettes }) {
   const [copiedIndex, setCopiedIndex] = useState(null);
 
@@ -11,14 +11,14 @@ function SavedPalettes({ savedPalettes, setSavedPalettes }) {
   };
 
   const deletePalette = (id) => {
-    if (confirm("Are you sure you want to delete this palette?")) {
+    if (window.confirm("Are you sure you want to delete this palette?")) {
       const updatedPalettes = savedPalettes.filter(
         (palette) => palette.id !== id
       );
       setSavedPalettes(updatedPalettes);
+      toast.success("Palette deleted successfully!");
     }
   };
-
   return (
     <div className="bg-white rounded-lg shadow-lg p-6">
       <h2 className="text-2xl font-bold mb-6 text-gray-800">

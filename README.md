@@ -33,4 +33,6 @@ This React-based web application allows users to upload an image, extract domina
  
  2. 🖼️ Screenshots
 
+    <img width="1671" alt="Image" src="https://github.com/user-attachments/assets/bd634b45-fadb-4b8b-acf0-9cafe828ae27" />
+
  

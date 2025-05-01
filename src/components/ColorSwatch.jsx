@@ -1,21 +1,21 @@
 
 import React from 'react';
 import { Copy, X } from 'lucide-react';
+import { calculateTextColor } from '../utils/colorUtils';
 
 
 
-function calculateTextColor(hexColor) {
-  // Extract RGB components
-  const r = parseInt(hexColor.substring(1, 3), 16);
-  const g = parseInt(hexColor.substring(3, 5), 16);
-  const b = parseInt(hexColor.substring(5, 7), 16);
+// function calculateTextColor(hexColor) {
 
-  // Calculate relative luminance
-  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+//   const r = parseInt(hexColor.substring(1, 3), 16);
+//   const g = parseInt(hexColor.substring(3, 5), 16);
+//   const b = parseInt(hexColor.substring(5, 7), 16);
 
-  // Return white for dark colors, black for light colors
-  return luminance > 0.5 ? "text-black" : "text-white";
-}
+//   const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+
+//   // Return white for dark colors, black for light colors
+//   return luminance > 0.5 ? "text-black" : "text-white";
+// }
 
 
 function ColorSwatch({ color, onCopy, isCopied, onRemove = null }) {

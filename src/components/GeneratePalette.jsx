@@ -150,28 +150,28 @@ function GeneratePalette({ savedPalettes, setSavedPalettes }) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">
+    <div className="bg-[#f1f5f9] rounded-2xl p-6 shadow-inner shadow-white/40 dark:shadow-black/20">
+      <h2 className="text-3xl font-semibold mb-6 text-gray-700">
         Generate Color Palette
       </h2>
 
       {/* Color Input Section */}
-      <div className="mb-8 p-6 bg-gray-50 rounded-lg">
+      <div className="mb-8 p-6 rounded-2xl bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff]">
         <div className="flex flex-col md:flex-row items-center gap-4 mb-4">
-          <div className="relative w-full md:w-auto">
+          <div className="relative flex items-center w-full md:w-auto">
             <input
               type="color"
               value={newColor}
               onChange={(e) => setNewColor(e.target.value)}
-              className="w-16 h-16 rounded cursor-pointer"
+              className="w-16 h-16 rounded-full cursor-pointer border-none shadow-[4px_4px_10px_#d1d9e6,-4px_-4px_10px_#ffffff]"
             />
-            <span className="ml-2 text-gray-700">{newColor}</span>
+            <span className="ml-2 text-gray-600 font-medium">{newColor}</span>
           </div>
 
           <button
             onClick={addBaseColor}
             disabled={baseColors.length >= 3}
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+            className="px-5 py-2.5 rounded-xl bg-[#dde1e7] shadow-[4px_4px_10px_#d1d9e6,-4px_-4px_10px_#ffffff] text-gray-700 font-semibold hover:brightness-105 disabled:opacity-50"
           >
             Add Base Color {baseColors.length < 3 ? "" : "(Max 3)"}
           </button>
@@ -182,10 +182,10 @@ function GeneratePalette({ savedPalettes, setSavedPalettes }) {
           {baseColors.map((color, index) => (
             <div key={index} className="flex items-center gap-2">
               <div
-                className="w-12 h-12 rounded shadow-md"
+                className="w-12 h-12 rounded-full shadow-[4px_4px_8px_#d1d9e6,-4px_-4px_8px_#ffffff]"
                 style={{ backgroundColor: color }}
               ></div>
-              <span className="text-gray-700">{color}</span>
+              <span className="text-gray-600 font-medium">{color}</span>
               <button
                 onClick={() => removeBaseColor(index)}
                 className="p-1 text-red-500 hover:text-red-700"
@@ -199,7 +199,7 @@ function GeneratePalette({ savedPalettes, setSavedPalettes }) {
 
       {/* Palette Type Selection */}
       <div className="mb-8">
-        <h2 className="text-xl font-semibold mb-4 text-gray-700">
+        <h2 className="text-xl font-semibold mb-4 text-gray-600">
           Choose Palette Type
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -207,14 +207,14 @@ function GeneratePalette({ savedPalettes, setSavedPalettes }) {
             <div
               key={relation.name}
               onClick={() => setRelationshipType(relation.name)}
-              className={`p-4 rounded-lg cursor-pointer border-2 transition-all ${
+              className={`p-4 rounded-2xl cursor-pointer shadow-[4px_4px_10px_#d1d9e6,-4px_-4px_10px_#ffffff] transition-all ${
                 relationshipType === relation.name
-                  ? "border-blue-500 bg-blue-50"
-                  : "border-gray-200 hover:border-blue-300"
+                  ? "bg-blue-100 border-2 border-blue-300"
+                  : "hover:bg-blue-50"
               }`}
             >
-              <h3 className="font-medium text-gray-800">{relation.name}</h3>
-              <p className="text-sm text-gray-600">{relation.description}</p>
+              <h3 className="font-medium text-gray-700">{relation.name}</h3>
+              <p className="text-sm text-gray-500">{relation.description}</p>
             </div>
           ))}
         </div>
@@ -223,12 +223,12 @@ function GeneratePalette({ savedPalettes, setSavedPalettes }) {
       {/* Generated Palette Display */}
       <div className="mb-8">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-semibold text-gray-700">
+          <h2 className="text-xl font-semibold text-gray-600">
             Generated Palette
           </h2>
           <button
             onClick={regeneratePalette}
-            className="flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-green-400 text-white shadow hover:bg-green-500 transition"
           >
             <RefreshCw size={16} />
             Regenerate
@@ -254,11 +254,11 @@ function GeneratePalette({ savedPalettes, setSavedPalettes }) {
               placeholder="Name your palette"
               value={paletteName}
               onChange={(e) => setPaletteName(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded w-full sm:w-auto"
+              className="px-4 py-2 rounded-xl w-full sm:w-auto bg-[#f5f7fa] shadow-inner border border-gray-300 text-gray-700"
             />
             <button
               onClick={savePalette}
-              className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 w-full sm:w-auto"
+              className="flex items-center gap-2 px-4 py-2 bg-indigo-500 text-white rounded-xl hover:bg-indigo-600 transition shadow"
             >
               <Save size={16} />
               Save Palette
@@ -268,9 +268,9 @@ function GeneratePalette({ savedPalettes, setSavedPalettes }) {
       </div>
 
       {/* Instructions */}
-      <div className="bg-gray-50 p-4 rounded-lg">
-        <h3 className="font-semibold text-gray-700 mb-2">How to use:</h3>
-        <ol className="list-decimal pl-5 text-gray-600 space-y-1">
+      <div className="bg-[#e0e5ec] p-4 rounded-2xl shadow-[inset_6px_6px_12px_#d1d9e6,inset_-6px_-6px_12px_#ffffff]">
+        <h3 className="font-semibold text-gray-600 mb-2">How to use:</h3>
+        <ol className="list-decimal pl-5 text-gray-500 space-y-1 text-sm">
           <li>Select and add up to 3 base colors</li>
           <li>Choose a palette relationship type</li>
           <li>Click on any color swatch to copy its hex value</li>

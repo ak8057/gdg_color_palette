@@ -34,20 +34,16 @@ function ImageExtractor({ savedPalettes, setSavedPalettes }) {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
 
-    // Resize canvas to match image dimensions
     canvas.width = img.width;
     canvas.height = img.height;
 
-    // Draw image to canvas
     ctx.drawImage(img, 0, 0);
 
-    // Get image data
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
 
-    // Sample colors from the image
     const colorMap = {};
-    const pixelCount = imageData.length / 4; // RGBA = 4 values per pixel
-    const sampleRate = Math.max(1, Math.floor(pixelCount / 10000)); // Sample at most 10,000 pixels
+    const pixelCount = imageData.length / 4; 
+    const sampleRate = Math.max(1, Math.floor(pixelCount / 10000)); 
 
     for (let i = 0; i < pixelCount; i += sampleRate) {
       const offset = i * 4;
@@ -55,10 +51,8 @@ function ImageExtractor({ savedPalettes, setSavedPalettes }) {
       const g = imageData[offset + 1];
       const b = imageData[offset + 2];
 
-      // Skip transparent pixels
       if (imageData[offset + 3] < 128) continue;
 
-      // Convert to hex and add to map
       const hex = rgbToHex(r, g, b);
       if (colorMap[hex]) {
         colorMap[hex]++;
@@ -67,15 +61,12 @@ function ImageExtractor({ savedPalettes, setSavedPalettes }) {
       }
     }
 
-    // Sort by frequency and take the top 20
     const sortedColors = Object.keys(colorMap)
       .sort((a, b) => colorMap[b] - colorMap[a])
       .slice(0, 20);
 
-    // Filter for visually distinct colors
     const distinctColors = [];
     for (const color of sortedColors) {
-      // Only add if it's visually distinct from colors we already have
       if (!distinctColors.some((c) => isColorSimilar(color, c))) {
         distinctColors.push(color);
         if (distinctColors.length >= 10) break;
@@ -83,10 +74,9 @@ function ImageExtractor({ savedPalettes, setSavedPalettes }) {
     }
 
     setExtractedColors(distinctColors);
-    setSelectedColors([]); // Reset selection
+    setSelectedColors([]); 
   };
 
-  // Helper for color extraction
   const rgbToHex = (r, g, b) => {
     return (
       "#" +
@@ -98,13 +88,10 @@ function ImageExtractor({ savedPalettes, setSavedPalettes }) {
         .join("")
     );
   };
-
-  // Check if two colors are visually similar
   const isColorSimilar = (color1, color2) => {
     const c1 = hexToHSL(color1);
     const c2 = hexToHSL(color2);
 
-    // Consider similar if hue is close and saturation/lightness are similar
     const hueDiff = Math.abs(c1.h - c2.h);
     const adjustedHueDiff = hueDiff > 180 ? 360 - hueDiff : hueDiff;
     const satDiff = Math.abs(c1.s - c2.s);

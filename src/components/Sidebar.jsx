@@ -17,22 +17,18 @@ import SavedPalettes from "./SavedPalettes";
 
 
 export const Sidebar = () => {
-  // Navigation state
   const [activeTab, setActiveTab] = useState("generate");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Load saved palettes from localStorage
   const [savedPalettes, setSavedPalettes] = useState(() => {
     const storedPalettes = localStorage.getItem("colorPalettes");
     return storedPalettes ? JSON.parse(storedPalettes) : [];
   });
 
-  // Save palettes to localStorage when they change
   useEffect(() => {
     localStorage.setItem("colorPalettes", JSON.stringify(savedPalettes));
   }, [savedPalettes]);
 
-  // Navigation items
   const navItems = [
     { id: "generate", label: "Generate Palette", icon: <Palette size={20} /> },
     { id: "custom", label: "Custom Palette", icon: <UserPlus size={20} /> },

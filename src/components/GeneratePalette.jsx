@@ -32,7 +32,6 @@ const colorRelationships = [
 function generatePalette(baseColors, relationshipType) {
   const palette = [...baseColors];
 
-  // Convert all base colors to HSL
   const hslColors = baseColors.map((color) => hexToHSL(color));
 
   if (baseColors.length === 0) return [];
@@ -68,11 +67,10 @@ function generatePalette(baseColors, relationshipType) {
 
     case "Monochromatic":
       hslColors.forEach((color) => {
-        // Lighter variants
         palette.push(HSLToHex(color.h, color.s, Math.min(color.l + 20, 95)));
         palette.push(HSLToHex(color.h, color.s, Math.min(color.l + 40, 98)));
 
-        // Darker variants
+    
         palette.push(HSLToHex(color.h, color.s, Math.max(color.l - 20, 5)));
         palette.push(HSLToHex(color.h, color.s, Math.max(color.l - 40, 2)));
       });
@@ -90,7 +88,6 @@ function generatePalette(baseColors, relationshipType) {
       break;
   }
 
-  // Ensure unique colors in palette
   return [...new Set(palette)];
 }
 
@@ -103,7 +100,6 @@ function GeneratePalette({ savedPalettes, setSavedPalettes }) {
   const [copiedIndex, setCopiedIndex] = useState(null);
   const [paletteName, setPaletteName] = useState("");
 
-  // Generate palette when baseColors or relationshipType changes
   useEffect(() => {
     const newPalette = generatePalette(baseColors, relationshipType);
     setPalette(newPalette);
@@ -145,7 +141,6 @@ function GeneratePalette({ savedPalettes, setSavedPalettes }) {
     setSavedPalettes([...savedPalettes, newPalette]);
     setPaletteName("");
 
-    // Show save success notification
     toast.success(`Custom palette "${name}" saved successfully!` , {
       position: "top-right",
       autoClose: 2000,

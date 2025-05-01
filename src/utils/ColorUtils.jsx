@@ -1,19 +1,15 @@
 export function calculateTextColor(hexColor) {
-  // Extract RGB components
   const r = parseInt(hexColor.substring(1, 3), 16);
   const g = parseInt(hexColor.substring(3, 5), 16);
   const b = parseInt(hexColor.substring(5, 7), 16);
 
-  // Calculate relative luminance
   const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
 
-  // Return white for dark colors, black for light colors
   return luminance > 0.5 ? "text-black" : "text-white";
 }
 
 
 export function hexToHSL(hex) {
-  // Convert hex to RGB first
   let r = 0,
     g = 0,
     b = 0;
@@ -27,7 +23,6 @@ export function hexToHSL(hex) {
     b = parseInt(hex.substring(5, 7), 16);
   }
 
-  // Convert RGB to HSL
   r /= 255;
   g /= 255;
   b /= 255;
@@ -39,7 +34,7 @@ export function hexToHSL(hex) {
     l = (max + min) / 2;
 
   if (max === min) {
-    h = s = 0; // achromatic
+    h = s = 0; 
   } else {
     const d = max - min;
     s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
@@ -99,12 +94,10 @@ export function HSLToHex(h, s, l) {
     b = x;
   }
 
-  // Convert to hex
   r = Math.round((r + m) * 255).toString(16);
   g = Math.round((g + m) * 255).toString(16);
   b = Math.round((b + m) * 255).toString(16);
 
-  // Ensure two digits
   if (r.length === 1) r = "0" + r;
   if (g.length === 1) g = "0" + g;
   if (b.length === 1) b = "0" + b;

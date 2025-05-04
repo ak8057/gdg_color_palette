@@ -7,8 +7,10 @@ import "react-toastify/dist/ReactToastify.css";
 export default function ColorPaletteGenerator() {
   return (
     <>
-    <Sidebar/>
-    <ToastContainer position="top-right" autoClose={3000} />
+
+      <Sidebar />
+
+      <ToastContainer position="top-right" autoClose={3000} />
     </>
   );
 }

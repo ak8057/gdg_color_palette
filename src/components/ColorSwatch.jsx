@@ -24,6 +24,7 @@ function ColorSwatch({ color, onCopy, isCopied, onRemove = null }) {
             <Copy size={24} />
           </button>
         )}
+
         {onRemove && (
           <button
             onClick={() => onRemove(color)}
@@ -32,13 +33,15 @@ function ColorSwatch({ color, onCopy, isCopied, onRemove = null }) {
             <X size={14} />
           </button>
         )}
+
         {isCopied && (
           <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white">
             Copied!
           </div>
         )}
       </div>
-      <span className="text-gray-700 font-mono">{color}</span>
+
+      <span className="text-gray-700 dark:text-gray-300 font-mono">{color}</span>
     </div>
   );
 }

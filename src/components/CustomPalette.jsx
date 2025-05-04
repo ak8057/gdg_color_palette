@@ -61,28 +61,30 @@ function CustomPalette({ savedPalettes, setSavedPalettes }) {
     });  };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">
+    <div className="bg-white dark:bg-[#1e293b] rounded-lg shadow-lg p-6">
+      <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-100">
         Create Custom Palette
       </h2>
 
       {/* Color Input */}
-      <div className="mb-8 p-6 bg-gray-50 rounded-lg">
+      <div className="mb-8 p-6 bg-gray-50 dark:bg-slate-800 rounded-lg">
         <div className="flex flex-col md:flex-row items-center gap-4 mb-4">
-          <div className="relative w-full md:w-auto">
+          <div className="flex items-center relative w-full md:w-auto">
             <input
               type="color"
               value={newCustomColor}
               onChange={(e) => setNewCustomColor(e.target.value)}
               className="w-16 h-16 rounded cursor-pointer"
             />
-            <span className="ml-2 text-gray-700">{newCustomColor}</span>
+            <span className="ml-2 text-gray-700 dark:text-gray-200">
+              {newCustomColor}
+            </span>
           </div>
 
           <button
             onClick={addCustomColor}
             disabled={customColors.length >= 10}
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-gray-300 dark:disabled:bg-slate-600 disabled:cursor-not-allowed"
           >
             Add Color {customColors.length < 10 ? "" : "(Max 10)"}
           </button>
@@ -91,7 +93,7 @@ function CustomPalette({ savedPalettes, setSavedPalettes }) {
 
       {/* Custom Palette Display */}
       <div className="mb-8">
-        <h2 className="text-xl font-semibold mb-4 text-gray-700">
+        <h2 className="text-xl font-semibold mb-4 text-gray-700 dark:text-gray-200">
           Your Custom Palette
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
@@ -114,7 +116,7 @@ function CustomPalette({ savedPalettes, setSavedPalettes }) {
               placeholder="Name your custom palette"
               value={customPaletteName}
               onChange={(e) => setCustomPaletteName(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded w-full sm:w-auto"
+              className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded w-full sm:w-auto bg-white dark:bg-slate-700 text-gray-800 dark:text-gray-100"
             />
             <button
               onClick={saveCustomPalette}
@@ -128,9 +130,11 @@ function CustomPalette({ savedPalettes, setSavedPalettes }) {
       </div>
 
       {/* Instructions */}
-      <div className="bg-gray-50 p-4 rounded-lg">
-        <h3 className="font-semibold text-gray-700 mb-2">How to use:</h3>
-        <ol className="list-decimal pl-5 text-gray-600 space-y-1">
+      <div className="bg-gray-50 dark:bg-slate-800 p-4 rounded-lg">
+        <h3 className="font-semibold text-gray-700 dark:text-gray-200 mb-2">
+          How to use:
+        </h3>
+        <ol className="list-decimal pl-5 text-gray-600 dark:text-gray-400 space-y-1">
           <li>Pick colors and add them to your custom palette</li>
           <li>
             Remove any colors you don't want by clicking the X when hovering
@@ -141,6 +145,7 @@ function CustomPalette({ savedPalettes, setSavedPalettes }) {
       </div>
     </div>
   );
+
 }
 
 

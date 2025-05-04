@@ -152,20 +152,24 @@ function ImageExtractor({ savedPalettes, setSavedPalettes }) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">
+    <div className="bg-white dark:bg-[#1e293b] rounded-lg shadow-lg p-6">
+      <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-100">
         Extract Colors from Image
       </h2>
 
       {/* Image Upload */}
       <div className="mb-8">
         <div
-          className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-6 cursor-pointer hover:border-blue-400 transition-colors"
+          className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-6 cursor-pointer hover:border-blue-400 transition-colors"
           onClick={() => fileInputRef.current.click()}
         >
-          <Image size={48} className="text-gray-400 mb-4" />
-          <p className="text-gray-600 mb-2">Click to upload an image</p>
-          <p className="text-gray-400 text-sm">JPG, PNG, or GIF</p>
+          <Image size={48} className="text-gray-400 mb-4 dark:text-gray-500" />
+          <p className="text-gray-600 dark:text-gray-300 mb-2">
+            Click to upload an image
+          </p>
+          <p className="text-gray-400 dark:text-gray-500 text-sm">
+            JPG, PNG, or GIF
+          </p>
           <input
             type="file"
             accept="image/*"
@@ -182,7 +186,7 @@ function ImageExtractor({ savedPalettes, setSavedPalettes }) {
       {/* Preview uploaded image */}
       {uploadedImage && (
         <div className="mb-8">
-          <h3 className="text-lg font-semibold mb-2 text-gray-700">
+          <h3 className="text-lg font-semibold mb-2 text-gray-700 dark:text-gray-200">
             Uploaded Image
           </h3>
           <div className="max-h-64 overflow-scroll rounded-lg shadow-md">
@@ -198,10 +202,10 @@ function ImageExtractor({ savedPalettes, setSavedPalettes }) {
       {/* Extracted Colors */}
       {extractedColors.length > 0 && (
         <div className="mb-8">
-          <h3 className="text-lg font-semibold mb-2 text-gray-700">
+          <h3 className="text-lg font-semibold mb-2 text-gray-700 dark:text-gray-200">
             Extracted Colors
           </h3>
-          <p className="text-gray-600 mb-4">
+          <p className="text-gray-600 dark:text-gray-400 mb-4">
             Click on colors to select them for your palette
           </p>
 
@@ -234,7 +238,9 @@ function ImageExtractor({ savedPalettes, setSavedPalettes }) {
                     </div>
                   )}
                 </div>
-                <span className="text-gray-700 font-mono">{color}</span>
+                <span className="text-gray-700 dark:text-gray-200 font-mono">
+                  {color}
+                </span>
               </div>
             ))}
           </div>
@@ -242,7 +248,7 @@ function ImageExtractor({ savedPalettes, setSavedPalettes }) {
           {/* Selected Colors */}
           {selectedColors.length > 0 && (
             <div className="mt-8">
-              <h3 className="text-lg font-semibold mb-2 text-gray-700">
+              <h3 className="text-lg font-semibold mb-2 text-gray-700 dark:text-gray-200">
                 Selected Colors
               </h3>
               <div className="flex flex-wrap gap-4 mb-6">
@@ -252,7 +258,9 @@ function ImageExtractor({ savedPalettes, setSavedPalettes }) {
                       className="w-12 h-12 rounded shadow-md"
                       style={{ backgroundColor: color }}
                     ></div>
-                    <span className="text-gray-700 font-mono">{color}</span>
+                    <span className="text-gray-700 dark:text-gray-200 font-mono">
+                      {color}
+                    </span>
                     <button
                       onClick={() => toggleColorSelection(color)}
                       className="p-1 text-red-500 hover:text-red-700"
@@ -270,7 +278,7 @@ function ImageExtractor({ savedPalettes, setSavedPalettes }) {
                   placeholder="Name your palette"
                   value={extractedPaletteName}
                   onChange={(e) => setExtractedPaletteName(e.target.value)}
-                  className="px-4 py-2 border border-gray-300 rounded w-full sm:w-auto"
+                  className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded w-full sm:w-auto bg-white dark:bg-slate-700 text-gray-800 dark:text-gray-100"
                 />
                 <button
                   onClick={saveExtractedPalette}
@@ -286,9 +294,11 @@ function ImageExtractor({ savedPalettes, setSavedPalettes }) {
       )}
 
       {/* Instructions */}
-      <div className="bg-gray-50 p-4 rounded-lg">
-        <h3 className="font-semibold text-gray-700 mb-2">How to use:</h3>
-        <ol className="list-decimal pl-5 text-gray-600 space-y-1">
+      <div className="bg-gray-50 dark:bg-slate-800 p-4 rounded-lg">
+        <h3 className="font-semibold text-gray-700 dark:text-gray-200 mb-2">
+          How to use:
+        </h3>
+        <ol className="list-decimal pl-5 text-gray-600 dark:text-gray-400 space-y-1">
           <li>Upload an image by clicking on the upload area</li>
           <li>We'll extract the most dominant colors from your image</li>
           <li>Click on colors to select them for your palette</li>
@@ -297,6 +307,7 @@ function ImageExtractor({ savedPalettes, setSavedPalettes }) {
       </div>
     </div>
   );
+
 }
 
 
